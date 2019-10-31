@@ -110,14 +110,6 @@ function game(event) {
 //   cardEl.children.querySelector(".back").classList.toggle("face-up");
 // }
 
-// function to reset the game.
-// Needs to:
-// Reset the win counter,
-// Shuffle the deck,
-// Flip all the cards face down,
-// Reset the timer
-// Enable Start button (add event listener to it)
-
 // function to start the game. Needs to add deck event listener and start timer.
 function start() {
   // Attach flip on click event listener to check for matches
@@ -128,18 +120,55 @@ function start() {
 }
 function timer() {
   time++;
-  document.querySelector(".screen").innerText = time;
+  document.querySelector(".screen").innerText = timeString(time);
 }
-function reset(){
-    //
+
+// reset: function to reset the game.
+// Needs to:
+
+function reset() {
+  // Reset the win counter,
+  counter = 0;
+  // Shuffle the deck
+  shuffle();
+  // iterate through the cardsArray
+  for (let i = 0; i < deck.length; i++) {
+    const cardEl = cardsArray[i];
+    // flip the cards down (toggle face-up class)
+    cardEl.querySelector(".back").classList.toggle("face-up");
+    cardEl.querySelector(".front").classList.toggle("face-up");
+
+    // set a delay to give new values to innerText from the reshuffled deck.
+    setTimeout(() => {
+      cardEl.querySelector(".front").innerText = `${deck[i]}`;
+    }, 500);
+  }
+  // Reset the timer
+  clearInterval(timeSet);
+  time = 0;
+  document.querySelector(".screen").innerText = timeString(time);
+  // Enable Start button (add event listener to it)
+  startEl.addEventListener("click", start);
 }
 
 // Time string function
 // Takes in an integer value of seconds
 // Returns a string with the format of: hh:mm:ss
-function timeString (inputSeconds) {
+function timeString(inputSeconds) {
   let tempNum = inputSeconds;
-  const seconds = inputSeconds % 60;
-  
-  
+  const seconds = tempNum % 60;
+  //   console.log(tempNum);
+  tempNum = Math.floor(tempNum / 60);
+  const minutes = tempNum % 60;
+  tempNum = Math.floor(tempNum / 60);
+  const hours = tempNum;
+
+  return `${checkTime(hours)}:${checkTime(minutes)}:${checkTime(seconds)}`;
+}
+
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  } // add zero in front of numbers < 10
+  return i;
 }
