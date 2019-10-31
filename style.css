@@ -33,7 +33,7 @@ nav {
   box-shadow: 0 9px #999;
 }
 .pushButton:active {
-  box-shadow: 0 5px #666;
+  box-shadow: 0 5px #999;
   transform: translateY(4px);
 }
 .pushButton:hover {
@@ -64,8 +64,11 @@ nav {
   margin: 20px auto;
   color: white;
 }
-.back {
-  background-color: lightgray;
+.screen:hover {
+    cursor: default;
+}
+.clockBack {
+  background-color: dimgray;
   height: 100px;
   width: 250px;
   display: flex;
@@ -88,4 +91,28 @@ nav {
 .face-up {
   transition: transform 0.5s ease 0.5s;
   transform: rotateY(0deg);
+}
+.card {
+  width: 110px;
+  height: 160px;
+}
+.card:hover {
+  cursor: pointer;
+}
+.front {
+  position: absolute;
+  width: 100px;
+  height: 150px;
+  background-color: paleturquoise;
+  border-radius: 10px;
+  border: 5px solid cornflowerblue;
+}
+.back {
+  position: absolute;
+  width: 100px;
+  height: 150px;
+  background-color: lightblue;
+  transform: rotateY(-90deg);
+  border-radius: 10px;
+  border: 5px solid cornflowerblue;
 }
