@@ -33,6 +33,7 @@ nav {
   height: 100vh;
   background-color: peru;
   border-top: 5px solid sienna;
+  overflow: hidden;
   width: 100%;
 }
 .start {
