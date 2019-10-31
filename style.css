@@ -6,7 +6,7 @@ nav {
   background-color: lightskyblue;
   height: 200px;
 }
-section {
+.table {
   margin: 0;
   position: absolute;
   bottom: 0;
@@ -15,10 +15,10 @@ section {
   width: 100%;
 }
 .start {
-    background-color: lightgreen;
+  background-color: lightgreen;
 }
 .reset {
-    background-color: salmon;
+  background-color: salmon;
 }
 .pushButton {
   text-decoration: none;
@@ -37,7 +37,7 @@ section {
   transform: translateY(4px);
 }
 .pushButton:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 .clock {
   height: 100px;
@@ -54,10 +54,14 @@ section {
 .screen {
   background-color: mediumseagreen;
   text-align: center;
-  font-size: 2em;
+  font-size: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
   width: 200px;
-  height: 55px;
-  margin: 25px auto;
+  height: 65px;
+  margin: 20px auto;
   color: white;
 }
 .back {
@@ -71,4 +75,12 @@ section {
   left: 50%;
   transform: translateX(-50%);
   border-radius: 10px;
+}
+.deck {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 75px auto;
+  border: 2px solid black;
 }
