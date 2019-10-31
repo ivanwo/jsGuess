@@ -30,6 +30,7 @@ nav {
   position: absolute;
   bottom: 0;
   top: 200px;
+  height: 100vh;
   background-color: peru;
   border-top: 5px solid sienna;
   width: 100%;
@@ -106,7 +107,7 @@ nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin: 20px auto;
+  margin: 2%  auto;
   transform: perspective(500px) rotateX(30deg);
 }
 
