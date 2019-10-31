@@ -102,7 +102,7 @@ nav {
   border-radius: 20px;
 }
 .deck {
-  width: 650px;
+  width: 80%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
