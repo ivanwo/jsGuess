@@ -1,11 +1,18 @@
 let deck = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4];
 let counter = 0;
 let time = 0;
+let timeSet;
 
 deck.sort(() => Math.random() - 0.5);
 function shuffle() {
   deck.sort(() => Math.random() - 0.5);
 }
+
+let startEl = document.querySelector(".start");
+startEl.addEventListener("click", start);
+
+let resetEl = document.querySelector(".reset");
+resetEl.addEventListener("click", reset);
 
 // Grab deck container
 const deckEl = document.querySelector(".deck");
@@ -32,9 +39,6 @@ for (const cardVal of deck) {
 }
 // Grab all cards
 const cardsArray = document.querySelectorAll(".card");
-
-// Attach flip on click event listener to check for matches
-deckEl.addEventListener("click", game);
 
 function game(event) {
   // Check the thing clicked is a card (requires for checking for all three possible cases that we want to trigger on)
@@ -74,6 +78,7 @@ function game(event) {
               //remove listener from deck
               deckEl.removeEventListener("click", game);
               //stop timer
+              clearInterval(timeSet);
             }
             return;
           } else {
@@ -105,6 +110,36 @@ function game(event) {
 //   cardEl.children.querySelector(".back").classList.toggle("face-up");
 // }
 
-// function to reset the game
+// function to reset the game.
+// Needs to:
+// Reset the win counter,
+// Shuffle the deck,
+// Flip all the cards face down,
+// Reset the timer
+// Enable Start button (add event listener to it)
 
-// function to start the game
+// function to start the game. Needs to add deck event listener and start timer.
+function start() {
+  // Attach flip on click event listener to check for matches
+  deckEl.addEventListener("click", game);
+  // begin timer
+  timeSet = setInterval(timer, 1000);
+  startEl.removeEventListener("click", start);
+}
+function timer() {
+  time++;
+  document.querySelector(".screen").innerText = time;
+}
+function reset(){
+    //
+}
+
+// Time string function
+// Takes in an integer value of seconds
+// Returns a string with the format of: hh:mm:ss
+function timeString (inputSeconds) {
+  let tempNum = inputSeconds;
+  const seconds = inputSeconds % 60;
+  
+  
+}

@@ -31,6 +31,7 @@ nav {
   bottom: 0;
   top: 200px;
   background-color: peru;
+  border-top: 5px solid sienna;
   width: 100%;
 }
 .start {
@@ -96,16 +97,15 @@ nav {
   top: 125px;
   left: 50%;
   transform: translateX(-50%);
-  border-radius: 10px;
+  border-radius: 20px;
 }
 .deck {
   width: 650px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin: 75px auto;
-  /* transform: skew(10deg, 10deg); */
-  /* border: 2px solid black; */
+  margin: 20px auto;
+  transform: perspective(500px) rotateX(30deg);
 }
 
 .card {
