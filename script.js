@@ -1,4 +1,4 @@
-let deck = ["♣&#xFE0E;", "♣&#xFE0E;", "♪&#xFE0E;", "♪&#xFE0E;", "★&#xFE0E;", "★&#xFE0E;", "⚚&#xFE0E;", "⚚&#xFE0E;", "⚸", "⚸"];
+let deck = ["♣&#xFE0E;", "♣&#xFE0E;", "♪&#xFE0E;", "♪&#xFE0E;", "★&#xFE0E;", "★&#xFE0E;", "♥&#xFE0E;", "♥&#xFE0E;", "♦&#xFE0E;", "♦&#xFE0E;"];
 let counter = 0;
 let time = 0;
 let timeSet;

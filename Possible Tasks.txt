@@ -7,3 +7,5 @@ Make cards auto-display evenly
 Find better/more-consistent symbol font for mobile vs. desktop
 Different symbol themes that the user can select
 better flipping animation: make the cards move more 3D like.
+--Menu restructure to have instruction bubbles attached to the clock buttons--
+Make sure the start button is disabled while the reset animation is running.
