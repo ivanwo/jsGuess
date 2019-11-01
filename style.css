@@ -82,10 +82,10 @@ nav {
   overflow: hidden;
   width: 100%;
 }
-.start {
+.startButton {
   background-color: lightgreen;
 }
-.reset {
+.resetButton {
   background-color: salmon;
 }
 .pushButton {
@@ -157,6 +157,7 @@ nav {
   justify-content: space-evenly;
   margin: 15% auto;
   transform: none;
+  transition: padding-top 2s;
 }
 
 .card {
@@ -175,7 +176,7 @@ nav {
   background-color: lightblue;
   border-radius: 10px;
   border: 8px solid cornflowerblue;
-  transition: 0.5s ease;
+  /* transition: 0.5s ease; */
   display: flex;
   color: royalblue;
   font-family: sans-serif;
@@ -222,11 +223,19 @@ nav {
   transition: transform 0.5s ease 0.5s;
   transform: rotateY(0deg);
 }
+div.resetDeck {
+  padding-top: 100%;
+  width: 85%;
+}
 
 @media only screen and (min-width: 600px) {
   .deck {
     margin: auto;
     width: 85%;
+    transform: perspective(500px) rotateX(30deg);
+    padding-top: 10px;
+  }
+  div.resetDeck {
     transform: perspective(500px) rotateX(30deg);
   }
   .menu {

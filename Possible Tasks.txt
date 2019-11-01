@@ -6,3 +6,4 @@ difficulty setting/suggestions
 Make cards auto-display evenly
 Find better/more-consistent symbol font for mobile vs. desktop
 Different symbol themes that the user can select
+better flipping animation: make the cards move more 3D like.

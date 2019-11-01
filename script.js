@@ -30,10 +30,10 @@ function menuFade(event) {
   }
 }
 
-let startEl = document.querySelector(".start");
+let startEl = document.querySelector(".startButton");
 startEl.addEventListener("click", start);
 
-let resetEl = document.querySelector(".reset");
+let resetEl = document.querySelector(".resetButton");
 resetEl.addEventListener("click", reset);
 
 // Grab deck container
@@ -154,25 +154,37 @@ function timer() {
 // Needs to:
 
 function reset() {
+  // Get the cards off the screen
+  deckEl.classList.toggle("resetDeck");
+  console.log("Should have clear animation running");
   // Reset the win counter,
   counter = 0;
   // Shuffle the deck
   shuffle();
-  // iterate through the cardsArray
-  for (let i = 0; i < deck.length; i++) {
-    const cardEl = cardsArray[i];
-    // flip the cards down (toggle face-up class)
-    // only flip card if it's facing up
-    if (cardEl.querySelector(".front").classList.contains("face-up")) {
-      cardEl.querySelector(".back").classList.toggle("face-up");
-      cardEl.querySelector(".front").classList.toggle("face-up");
-    }
+  // iterate through the cardsArray to replace the face values
+  setTimeout(_ => {
+    console.log("Should have flipped cards");
 
-    // set a delay to give new values to innerHTML from the reshuffled deck.
-    setTimeout(() => {
-      cardEl.querySelector(".front").innerHTML = `${deck[i]}`;
-    }, 500);
-  }
+    for (let i = 0; i < deck.length; i++) {
+      const cardEl = cardsArray[i];
+      // flip the cards down (toggle face-up class)
+      // only flip card if it's facing up
+      if (cardEl.querySelector(".front").classList.contains("face-up")) {
+        cardEl.querySelector(".back").classList.toggle("face-up");
+        cardEl.querySelector(".front").classList.toggle("face-up");
+      }
+
+      // set a delay to give new values to innerHTML from the reshuffled deck.
+      setTimeout(() => {
+        cardEl.querySelector(".front").innerHTML = `${deck[i]}`;
+      }, 500);
+    }
+  }, 1000);
+  setTimeout(_ => {
+    deckEl.classList.toggle("resetDeck");
+    console.log("Should have place on table animation running");
+
+  }, 2000);
   // Reset the timer
   clearInterval(timeSet);
   time = 0;
