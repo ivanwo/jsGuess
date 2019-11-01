@@ -135,8 +135,10 @@ function reset() {
   for (let i = 0; i < deck.length; i++) {
     const cardEl = cardsArray[i];
     // flip the cards down (toggle face-up class)
-    cardEl.querySelector(".back").classList.toggle("face-up");
-    cardEl.querySelector(".front").classList.toggle("face-up");
+    if (cardEl.querySelector(".front").classList.contains("face-up")) {
+      cardEl.querySelector(".back").classList.toggle("face-up");
+      cardEl.querySelector(".front").classList.toggle("face-up");
+    }
 
     // set a delay to give new values to innerText from the reshuffled deck.
     setTimeout(() => {
