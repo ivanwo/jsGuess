@@ -108,6 +108,10 @@ function game(event) {
               clearInterval(timeSet);
               // Add current timer time to score list and store score list
               scoreArray.unshift(time);
+              // Check if the number of scores > 10, and get rid of 1 if so
+              if (scoreArray.length > 10) {
+                scoreArray.pop();
+              }
               localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
               // Display Score List on Win pop-up
               displayScores();
@@ -267,7 +271,7 @@ function displayScores() {
   scoreHeaderEl.innerText = "Most Recent Times:";
   scoreBoardEl.appendChild(scoreHeaderEl);
   for (let i = 0; i < scoreArray.length; i++) {
-    if (i < 15) {
+    if (i < 10) {
       let scorePEl = document.createElement("p");
       scorePEl.innerHTML = `<i>${i + 1}:</i> ${timeString(scoreArray[i])}`;
       scorePEl.classList.add("scoreP");
