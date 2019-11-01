@@ -24,10 +24,8 @@ let menuEl = document.querySelector(".menu");
 menuEl.addEventListener("click", menuFade);
 
 function menuFade(event) {
-  if (event.target.classList.contains("starterButton")) {
-    menuEl.classList.add("fade");
-    setTimeout(_ => menuEl.style.display = "none", 2000);
-  }
+  menuEl.classList.add("fade");
+  setTimeout(_ => menuEl.style.display = "none", 2000);
 }
 
 let startEl = document.querySelector(".startButton");
@@ -226,6 +224,8 @@ function checkTime(i) {
 // We can use max-width breakpoints with the screen size to distribute the cards
 
 // Should we shrink/stretch the cards to compensate?
+
+// Change the menu handling as well?
 
 
 
