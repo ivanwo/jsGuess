@@ -2,7 +2,7 @@ let deck = ["♣&#xFE0E;", "♣&#xFE0E;", "♪&#xFE0E;", "♪&#xFE0E;", "★&#xF
 let counter = 0;
 let time = 0;
 let scoreArray;
-getScoreList();
+
 let timeSet;
 
 // deck.sort(() => Math.random() - 0.5);
@@ -23,11 +23,14 @@ function shuffle() {
   }
 }
 let menuEl = document.querySelector(".menu");
-menuEl.addEventListener("click", menuFade);
 
-function menuFade(event) {
+
+getScoreList();
+
+function menuFade() {
   menuEl.classList.add("fade");
   setTimeout(_ => menuEl.style.display = "none", 2000);
+  menuEl.removeEventListener("click", menuFade);
 }
 
 let startEl = document.querySelector(".startButton");
@@ -259,6 +262,13 @@ function getScoreList() {
   if (!(scoreArray = JSON.parse(localStorage.getItem("scoreArray")))) {
     // If it doesn't exist, create an empty array
     scoreArray = [];
+    // And only add the event listener for the menu, keep it visible
+    menuEl.addEventListener("click", menuFade);
+  } else {
+    displayScores();
+    // If there is a score list, immediately hide the menu
+    menuEl.classList.add("fade");
+    menuEl.style.display = "none";
   }
   console.log(scoreArray);
 }
