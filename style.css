@@ -1,10 +1,7 @@
 body {
   margin: 0;
 }
-@font-face {
-  font-family: "clock";
-  src: url(/clock.ttf) format("truetype");
-}
+
 nav {
   margin: 0;
   background-color: lightskyblue;
