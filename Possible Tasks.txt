@@ -3,3 +3,6 @@ Make the game start ask how big a game (how many pairs) the user wants.
 --Fisher-Yates shuffle--
 --Title Box--
 difficulty setting/suggestions
+Make cards auto-display evenly
+Find better/more-consistent symbol font for mobile vs. desktop
+Different symbol themes that the user can select

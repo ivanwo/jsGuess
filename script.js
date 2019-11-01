@@ -1,11 +1,12 @@
-let deck = ["♣", "♣", "♪", "♪", "★", "★", "⚚", "⚚", "⚸", "⚸"];
+let deck = ["♣&#xFE0E;", "♣&#xFE0E;", "♪&#xFE0E;", "♪&#xFE0E;", "★&#xFE0E;", "★&#xFE0E;", "⚚&#xFE0E;", "⚚&#xFE0E;", "⚸", "⚸"];
 let counter = 0;
 let time = 0;
 let timeSet;
 
 // deck.sort(() => Math.random() - 0.5);
 function shuffle() {
-  // deck.sort(() => Math.random() - 0.5);
+  // Old randomizer
+  deck.sort(() => Math.random() - 0.5);
   // Just shuffling deck items into random order
   // Setup for loop to go through deck in backwards order
   for (let i = deck.length - 1; i > 0; i--) {
@@ -49,8 +50,8 @@ for (const cardVal of deck) {
   deckEl.appendChild(newCard);
 
   // Add the face value
-  newFace.innerText = `${cardVal}`;
-  newBack.innerText = "?";
+  newFace.innerHTML = `${cardVal}`;
+  newBack.innerHTML = "?";
 
   // Assign classes to elements;
   newCard.classList.add("card");
@@ -94,8 +95,8 @@ function game(event) {
         // console.log(checkCard);
         if (checkCard.dataset.activeCard === "true") {
           if (
-            checkCard.querySelector(".front").innerText ===
-            cardEl.querySelector(".front").innerText
+            checkCard.querySelector(".front").innerHTML ===
+            cardEl.querySelector(".front").innerHTML
           ) {
             checkCard.dataset.activeCard = "false";
             counter++;
@@ -146,7 +147,7 @@ function start() {
 }
 function timer() {
   time++;
-  document.querySelector(".screen").innerText = timeString(time);
+  document.querySelector(".screen").innerHTML = timeString(time);
 }
 
 // reset: function to reset the game.
@@ -167,15 +168,15 @@ function reset() {
       cardEl.querySelector(".front").classList.toggle("face-up");
     }
 
-    // set a delay to give new values to innerText from the reshuffled deck.
+    // set a delay to give new values to innerHTML from the reshuffled deck.
     setTimeout(() => {
-      cardEl.querySelector(".front").innerText = `${deck[i]}`;
+      cardEl.querySelector(".front").innerHTML = `${deck[i]}`;
     }, 500);
   }
   // Reset the timer
   clearInterval(timeSet);
   time = 0;
-  document.querySelector(".screen").innerText = timeString(time);
+  document.querySelector(".screen").innerHTML = timeString(time);
   // Enable Start button (add event listener to it)
   startEl.addEventListener("click", start);
 }
@@ -203,3 +204,6 @@ function checkTime(i) {
   } // add zero in front of numbers < 10
   return i;
 }
+
+
+// Difficulty Settings Code
