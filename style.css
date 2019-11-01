@@ -108,8 +108,8 @@ nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin: 2%  auto;
-  transform: perspective(500px) rotateX(30deg);
+  margin: 12% auto;
+  transform: none;
 }
 
 .card {
@@ -173,4 +173,11 @@ nav {
 .face-up {
   transition: transform 0.5s ease 0.5s;
   transform: rotateY(0deg);
+}
+
+@media only screen and (min-width: 600px) {
+  .deck {
+    margin: 2% auto;
+    transform: perspective(500px) rotateX(30deg);
+  }
 }
