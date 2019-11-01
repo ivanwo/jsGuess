@@ -205,5 +205,17 @@ function checkTime(i) {
   return i;
 }
 
+// Evenly Spacing Cards Code
+// Check how many cards are being displayed
+// Odd? Even? What are they divisible by?
+
+// Check how big the screen is.
+// What height to width ratio is possible? What looks good?
+// We can use max-width breakpoints with the screen size to distribute the cards
+
+// Should we shrink/stretch the cards to compensate?
+
+
 
 // Difficulty Settings Code
+// User input method

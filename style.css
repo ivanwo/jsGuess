@@ -20,6 +20,7 @@ body {
 .menu p {
   background-color: lightslategrey;
   border-radius: 10px;
+  max-width: 500px;
   margin: 5% 10%;
   padding: 1em;
 }
