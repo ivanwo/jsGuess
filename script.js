@@ -106,8 +106,9 @@ function game(event) {
               deckEl.removeEventListener("click", game);
               //stop timer
               clearInterval(timeSet);
-              // Add current timer time to score list
+              // Add current timer time to score list and store score list
               scoreArray.unshift(time);
+              localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
               // Display Score List on Win pop-up
               displayScores();
             }
@@ -251,10 +252,11 @@ function checkTime(i) {
 
 // function to retrive previous win data
 function getScoreList() {
-  if (!(scoreArray = localStorage.getItem("scoreArray"))) {
+  if (!(scoreArray = JSON.parse(localStorage.getItem("scoreArray")))) {
     // If it doesn't exist, create an empty array
     scoreArray = [];
   }
+  console.log(scoreArray);
 }
 
 // function to display score list
@@ -275,10 +277,13 @@ function displayScores() {
     }
   }
   document.body.appendChild(scoreBoardEl);
-  document.body.addEventListener("click", clearScoreBoard);
+  setTimeout(() => {
+    document.body.addEventListener("click", clearScoreBoard);
+  }, 1000);
 }
 
 function clearScoreBoard() {
-  document.querySelector(".scoreBoard").remove();
+  let scoreBoardEl = document.querySelector(".scoreBoard");
   document.body.removeEventListener("click", clearScoreBoard);
+  scoreBoardEl.remove();
 }

@@ -248,6 +248,7 @@ div.resetDeck {
   margin: auto;
   opacity: 1;
   position: relative;
+  /* min-height: 250px; */
   font-family: sans-serif;
   font-size: 1.5em;
   background-color: cornsilk;
@@ -258,11 +259,16 @@ div.resetDeck {
   border-radius: 10px;
   border: 10px solid lightblue;
 }
+.scoreBoard p {
+  /* margin-bottom: 5px; */
+  margin:1px;
+}
 .scoreBoard i{
   color: orangered;
 }
 .scoreBoard h4{
   border-bottom: 2px solid lightblue;
+  margin-bottom: 10px;
 }
 
 @media only screen and (min-width: 600px) {
