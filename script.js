@@ -1,4 +1,4 @@
-let deck = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4];
+let deck = ["♣", "♣", "♪", "♪", "★", "★", "⚚", "⚚", "⚸", "⚸"];
 let counter = 0;
 let time = 0;
 let timeSet;
@@ -135,6 +135,7 @@ function reset() {
   for (let i = 0; i < deck.length; i++) {
     const cardEl = cardsArray[i];
     // flip the cards down (toggle face-up class)
+    // only flip card if it's facing up
     if (cardEl.querySelector(".front").classList.contains("face-up")) {
       cardEl.querySelector(".back").classList.toggle("face-up");
       cardEl.querySelector(".front").classList.toggle("face-up");
