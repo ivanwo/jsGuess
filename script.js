@@ -3,9 +3,30 @@ let counter = 0;
 let time = 0;
 let timeSet;
 
-deck.sort(() => Math.random() - 0.5);
+// deck.sort(() => Math.random() - 0.5);
 function shuffle() {
-  deck.sort(() => Math.random() - 0.5);
+  // deck.sort(() => Math.random() - 0.5);
+  // Just shuffling deck items into random order
+  // Setup for loop to go through deck in backwards order
+  for (let i = deck.length - 1; i > 0; i--) {
+    // Get a random index for the unshuffled deck
+    const shuffleIndex = Math.floor(Math.random() * (i + 1));
+    // Store the swap item temporarily
+    let temp = deck[i];
+    // Put the randomly picked item at the end of the unshuffled deck
+    deck[i] = deck[shuffleIndex];
+    // Put the temporarily stored item in place of the shuffled item
+    deck[shuffleIndex] = temp;
+  }
+}
+let menuEl = document.querySelector(".menu");
+menuEl.addEventListener("click", menuFade);
+
+function menuFade(event) {
+  if (event.target.classList.contains("starterButton")) {
+    menuEl.classList.add("fade");
+    setTimeout(_ => menuEl.style.display = "none", 2000);
+  }
 }
 
 let startEl = document.querySelector(".start");
@@ -36,6 +57,11 @@ for (const cardVal of deck) {
   newCard.dataset.activeCard = "false";
   newFace.classList.add("front");
   newBack.classList.add("back", "face-up");
+
+  // Shuffle function check: Uncommment to default 
+  // cards face up, and comment previosu 2 lines
+  // newFace.classList.add("front", "face-up");
+  // newBack.classList.add("back");
 }
 // Grab all cards
 const cardsArray = document.querySelectorAll(".card");
