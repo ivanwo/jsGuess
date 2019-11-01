@@ -8,5 +8,5 @@ Find better/more-consistent symbol font for mobile vs. desktop
 Different symbol themes that the user can select
 --Menu restructure to have instruction bubbles attached to the clock buttons--
 --Make sure the start button is disabled while the reset animation is running.--
-Add perspective change to flipping animation for desktop version.
-Win congrats box and previous score list stored in localStorage
+xxAdd perspective change to flipping animation for desktop version.xx
+--Win congrats box and previous score list stored in localStorage--
