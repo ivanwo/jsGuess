@@ -141,7 +141,7 @@ function start() {
   // Attach flip on click event listener to check for matches
   deckEl.addEventListener("click", game);
   // begin timer
-  timeSet = setInterval(timer, 1000);
+  timeSet = setInterval(timer, 100);
   startEl.removeEventListener("click", start);
 }
 function timer() {
@@ -181,18 +181,20 @@ function reset() {
 }
 
 // Time string function
-// Takes in an integer value of seconds
+// Takes in an integer value of hundreds of milliseconds
 // Returns a string with the format of: hh:mm:ss
-function timeString(inputSeconds) {
-  let tempNum = inputSeconds;
+function timeString(inputTime) {
+  let tempNum = inputTime;
+  const milliseconds = tempNum % 10;
+  tempNum = Math.floor(tempNum / 10);
   const seconds = tempNum % 60;
   //   console.log(tempNum);
   tempNum = Math.floor(tempNum / 60);
   const minutes = tempNum % 60;
-  tempNum = Math.floor(tempNum / 60);
-  const hours = tempNum;
+  // tempNum = Math.floor(tempNum / 60);
+  // const hours = tempNum;
 
-  return `${checkTime(hours)}:${checkTime(minutes)}:${checkTime(seconds)}`;
+  return `${checkTime(minutes)}:${checkTime(seconds)}.${milliseconds}`;
 }
 
 function checkTime(i) {
