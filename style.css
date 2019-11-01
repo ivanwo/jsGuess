@@ -12,31 +12,9 @@ body {
   /* align-items: center; */
   justify-content: center;
   font-family: sans-serif;
+  overflow:hidden;
   /* display:none; */
 }
-/* .menu p {
-  background-color: lightslategrey;
-  border-radius: 10px;
-  max-width: 500px;
-  margin: 5% 10%;
-  padding: 1em;
-}
-.menu h1 {
-  color: lavender;
-  margin-bottom: -10px;
-}
-.menu i {
-  font-weight: bold;
-  color: midnightblue;
-}
-.menu button {
-  height: 75px;
-  width: 150px;
-  border-radius: 10px;
-  font-family: sans-serif;
-  font-size: 2em;
-  background-color: mediumseagreen
-} */
 .fade {
   transition: 2s ease;
   opacity: 0;
@@ -101,12 +79,12 @@ nav h1 {
 }
 
 .start-instructions {
-transform: translateX(-145px);
+transform: translateX(-130px);
 }
 
 .reset-instructions {
   
-transform: translateX(-25px);
+transform: translateX(-45px);
 
 }
 
