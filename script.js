@@ -1,6 +1,8 @@
 let deck = ["♣&#xFE0E;", "♣&#xFE0E;", "♪&#xFE0E;", "♪&#xFE0E;", "★&#xFE0E;", "★&#xFE0E;", "♥&#xFE0E;", "♥&#xFE0E;", "♦&#xFE0E;", "♦&#xFE0E;"];
 let counter = 0;
 let time = 0;
+let scoreArray;
+getScoreList();
 let timeSet;
 
 // deck.sort(() => Math.random() - 0.5);
@@ -86,8 +88,7 @@ function game(event) {
     if (cardEl.querySelector(".front").classList.contains("face-up")) {
       return;
     } else {
-      cardEl.querySelector(".front").classList.toggle("face-up");
-      cardEl.querySelector(".back").classList.toggle("face-up");
+      flipCard(cardEl);
       // Card flipped up now. Need to check for match.
       for (let checkCard of cardsArray) {
         // console.log(checkCard);
@@ -100,10 +101,15 @@ function game(event) {
             counter++;
             // alert(counter);
             if (counter === deck.length / 2) {
+              // * * * WIN CASE * * * //
               //remove listener from deck
               deckEl.removeEventListener("click", game);
               //stop timer
               clearInterval(timeSet);
+              // Add current timer time to score list
+              scoreArray.unshift(time);
+              // Display Score List on Win pop-up
+              displayScores();
             }
             return;
           } else {
@@ -111,11 +117,8 @@ function game(event) {
 
             deckEl.removeEventListener("click", game);
             setTimeout(() => {
-              checkCard.querySelector(".back").classList.toggle("face-up");
-              checkCard.querySelector(".front").classList.toggle("face-up");
-
-              cardEl.querySelector(".back").classList.toggle("face-up");
-              cardEl.querySelector(".front").classList.toggle("face-up");
+              flipCard(checkCard);
+              flipCard(cardEl);
 
               deckEl.addEventListener("click", game);
             }, 1000);
@@ -130,10 +133,21 @@ function game(event) {
   }
 }
 // Function to flip a card
-// function flipCard(cardEl) {
-//   cardEl.children.querySelector(".front").classList.toggle("face-up");
-//   cardEl.children.querySelector(".back").classList.toggle("face-up");
-// }
+function flipCard(cardEl) {
+  // if (window.matchMedia("(max-width: 600px)")) {
+  //   cardEl.classList.toggle("cardFlipPerspective");
+  //   setTimeout(() => {
+  //     cardEl.querySelector(".front").classList.toggle("face-up");
+  //     cardEl.querySelector(".back").classList.toggle("face-up");
+  //   }, 500);
+  //   setTimeout(() => {
+  //     cardEl.classList.toggle("cardFlipPerspective");
+  //   }, 1500);
+  // } else {
+  cardEl.querySelector(".front").classList.toggle("face-up");
+  cardEl.querySelector(".back").classList.toggle("face-up");
+  // }
+}
 
 // function to start the game. Needs to add deck event listener and start timer.
 function start() {
@@ -168,8 +182,7 @@ function reset() {
       // flip the cards down (toggle face-up class)
       // only flip card if it's facing up
       if (cardEl.querySelector(".front").classList.contains("face-up")) {
-        cardEl.querySelector(".back").classList.toggle("face-up");
-        cardEl.querySelector(".front").classList.toggle("face-up");
+        flipCard(cardEl);
       }
 
       // set a delay to give new values to innerHTML from the reshuffled deck.
@@ -188,7 +201,10 @@ function reset() {
   time = 0;
   document.querySelector(".screen").innerHTML = timeString(time);
   // Enable Start button (add event listener to it)
-  startEl.addEventListener("click", start);
+  setTimeout(() => {
+
+    startEl.addEventListener("click", start);
+  }, 3000);
 }
 
 // Time string function
@@ -231,3 +247,38 @@ function checkTime(i) {
 
 // Difficulty Settings Code
 // User input method
+
+
+// function to retrive previous win data
+function getScoreList() {
+  if (!(scoreArray = localStorage.getItem("scoreArray"))) {
+    // If it doesn't exist, create an empty array
+    scoreArray = [];
+  }
+}
+
+// function to display score list
+function displayScores() {
+  let scoreBoardEl = document.createElement("div");
+  let scoreHeaderEl = document.createElement("h4");
+  scoreBoardEl.classList.add("scoreBoard");
+  scoreHeaderEl.innerText = "Most Recent Times:";
+  scoreBoardEl.appendChild(scoreHeaderEl);
+  for (let i = 0; i < scoreArray.length; i++) {
+    if (i < 15) {
+      let scorePEl = document.createElement("p");
+      scorePEl.innerHTML = `<i>${i + 1}:</i> ${timeString(scoreArray[i])}`;
+      scorePEl.classList.add("scoreP");
+      scoreBoardEl.appendChild(scorePEl);
+    } else {
+      break;
+    }
+  }
+  document.body.appendChild(scoreBoardEl);
+  document.body.addEventListener("click", clearScoreBoard);
+}
+
+function clearScoreBoard() {
+  document.querySelector(".scoreBoard").remove();
+  document.body.removeEventListener("click", clearScoreBoard);
+}
