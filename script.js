@@ -176,14 +176,14 @@ function timer() {
 function reset() {
   // Get the cards off the screen
   deckEl.classList.toggle("resetDeck");
-  console.log("Should have clear animation running");
+  // console.log("Should have clear animation running");
   // Reset the win counter,
   counter = 0;
   // Shuffle the deck
   shuffle();
   // iterate through the cardsArray to replace the face values
   setTimeout(_ => {
-    console.log("Should have flipped cards");
+    // console.log("Should have flipped cards");
 
     for (let i = 0; i < deck.length; i++) {
       const cardEl = cardsArray[i];
@@ -201,7 +201,7 @@ function reset() {
   }, 1000);
   setTimeout(_ => {
     deckEl.classList.toggle("resetDeck");
-    console.log("Should have place on table animation running");
+    // console.log("Should have place on table animation running");
 
   }, 2000);
   // Reset the timer
@@ -270,7 +270,7 @@ function getScoreList() {
     menuEl.classList.add("fade");
     menuEl.style.display = "none";
   }
-  console.log(scoreArray);
+  // console.log(scoreArray);
 }
 
 // function to display score list
