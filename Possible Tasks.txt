@@ -10,3 +10,13 @@ Different symbol themes that the user can select
 --Make sure the start button is disabled while the reset animation is running.--
 xxAdd perspective change to flipping animation for desktop version.xx
 --Win congrats box and previous score list stored in localStorage--
+intermitent bug where one card ends up flipped permanently. Might need to re-evaluate if the active card trigger can be bugged.
+The scores list have colons for the places and for the times, this needs to change, probably ) instead.
+Landscape on mobile is impossible since the cards are all offscreen. We need to change how the cards are displayed.
+Tablet size the cards fall off the screen partially on landscape.
+The symbols show up differently on different devices. On another note, the colorful symbols that show up were liked.
+Possible improvment on the scoreboards: Keep fastest time shown, but the rest can just be most recent.
+Feedback: Looks a little plain.
+For those who want fast times: Make the time taken to flip to be adjustable.
+Sounds: flip card sound, cheer on win, background music, stuff like that
+Maybe instructions on memory games included in the menu screen.
