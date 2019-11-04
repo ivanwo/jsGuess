@@ -19,5 +19,5 @@ xxPossible improvment on the scoreboards: Keep fastest time shown, but the rest 
 --Another Scoreboard option: Have the board swap between most recent times and fastest times.--
 Feedback: Looks a little plain.
 For those who want fast times: Make the time taken to flip to be adjustable.
-Sounds: flip card sound, cheer on win, background music, stuff like that
+--Sounds: flip card sound, cheer on win, background music, stuff like that--
 Maybe instructions on memory games included in the menu screen.

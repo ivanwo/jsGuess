@@ -21,6 +21,8 @@ let fastestArray;
 
 let timeSet;
 
+// Screen.lockOrientation('portrait');
+
 // deck.sort(() => Math.random() - 0.5);
 function shuffle() {
   // Old randomizer
