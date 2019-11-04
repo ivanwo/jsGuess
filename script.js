@@ -1,4 +1,16 @@
-let deck = ["♣&#xFE0E;", "♣&#xFE0E;", "♪&#xFE0E;", "♪&#xFE0E;", "★&#xFE0E;", "★&#xFE0E;", "♥&#xFE0E;", "♥&#xFE0E;", "♦&#xFE0E;", "♦&#xFE0E;"];
+let deck = [
+  "♣&#xFE0E;",
+  "♣&#xFE0E;",
+  "♪&#xFE0E;",
+  "♪&#xFE0E;",
+  "★&#xFE0E;",
+  "★&#xFE0E;",
+  "♥&#xFE0E;",
+  "♥&#xFE0E;",
+  "♦&#xFE0E;",
+  "♦&#xFE0E;"
+];
+let flipSound = document.getElementById("fwip");
 let counter = 0;
 let time = 0;
 let scoreArray;
@@ -25,13 +37,12 @@ function shuffle() {
 }
 let menuEl = document.querySelector(".menu");
 
-
 getScoreList();
 console.log(fastestArray);
 
 function menuFade() {
   menuEl.classList.add("fade");
-  setTimeout(_ => menuEl.style.display = "none", 2000);
+  setTimeout(_ => (menuEl.style.display = "none"), 2000);
   menuEl.removeEventListener("click", menuFade);
 }
 
@@ -64,7 +75,7 @@ for (const cardVal of deck) {
   newFace.classList.add("front");
   newBack.classList.add("back", "face-up");
 
-  // Shuffle function check: Uncommment to default 
+  // Shuffle function check: Uncommment to default
   // cards face up, and comment previosu 2 lines
   // newFace.classList.add("front", "face-up");
   // newBack.classList.add("back");
@@ -138,14 +149,17 @@ function game(event) {
                     }
                     break;
                   } else if (i === fastestArray.length) {
-                    // Check if the index is past the end of the array, if so, add the 
+                    // Check if the index is past the end of the array, if so, add the
                     // time to the array, since the loop will only go up to 10 elements
                     fastestArray.push(time);
                     break;
                   }
                 }
               }
-              localStorage.setItem("fastestArray", JSON.stringify(fastestArray));
+              localStorage.setItem(
+                "fastestArray",
+                JSON.stringify(fastestArray)
+              );
 
               // Set data attribute for score display
               document.body.dataset.scoreDisplay = "recent";
@@ -185,6 +199,10 @@ function flipCard(cardEl) {
   //     cardEl.classList.toggle("cardFlipPerspective");
   //   }, 1500);
   // } else {
+
+  setTimeout(_ => {
+    flipSound.play();
+  }, 30);
   cardEl.querySelector(".front").classList.toggle("face-up");
   cardEl.querySelector(".back").classList.toggle("face-up");
   // }
@@ -235,7 +253,6 @@ function reset() {
   setTimeout(_ => {
     deckEl.classList.toggle("resetDeck");
     // console.log("Should have place on table animation running");
-
   }, 2000);
   // Reset the timer
   clearInterval(timeSet);
@@ -243,7 +260,6 @@ function reset() {
   document.querySelector(".screen").innerHTML = timeString(time);
   // Enable Start button (add event listener to it)
   setTimeout(() => {
-
     startEl.addEventListener("click", start);
   }, 3000);
 }
@@ -284,11 +300,8 @@ function checkTime(i) {
 
 // Change the menu handling as well?
 
-
-
 // Difficulty Settings Code
 // User input method
-
 
 // function to retrive previous win data
 function getScoreList() {
@@ -311,14 +324,13 @@ function getScoreList() {
   // console.log(scoreArray);
 
   // Handle fastest scores array
-  fastestArray = JSON.parse(localStorage.getItem("fastestArray"))
+  fastestArray = JSON.parse(localStorage.getItem("fastestArray"));
   if (!fastestArray) {
     // If it doesn't exist create an empty array
     fastestArray = [];
   }
   // Do nothing otherwise, the default display is most recent times
 }
-
 
 // function to display score list
 function displayScores() {
@@ -333,7 +345,6 @@ function displayScores() {
     document.body.appendChild(scoreBoardEl);
     // Add the scoreboard class to the div container
     scoreBoardEl.classList.add("scoreBoard");
-
   } else {
     // Otherwise remove the current children
     while (scoreBoardEl.firstChild) {
@@ -357,7 +368,9 @@ function displayScores() {
   for (let i = 0; i < scoreArrayToDisplay.length; i++) {
     if (i < 10) {
       let scorePEl = document.createElement("p");
-      scorePEl.innerHTML = `<i>${i + 1})</i> ${timeString(scoreArrayToDisplay[i])}`;
+      scorePEl.innerHTML = `<i>${i + 1})</i> ${timeString(
+        scoreArrayToDisplay[i]
+      )}`;
       scorePEl.classList.add("scoreP");
       scoreBoardEl.appendChild(scorePEl);
     } else {
@@ -366,7 +379,9 @@ function displayScores() {
   }
 
   // Attach the listener to the emphasized text in the heading to swap the list if clicked
-  document.querySelector(".scoreBoard em").addEventListener("click", swapScoreList)
+  document
+    .querySelector(".scoreBoard em")
+    .addEventListener("click", swapScoreList);
   // Attach the listener on a delay to the body to clear the score list. The delay prevents a current mouse down from clearing it
   setTimeout(() => {
     document.body.addEventListener("click", clearScoreBoard);

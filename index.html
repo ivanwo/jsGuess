@@ -1,53 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      @font-face {
+        font-family: "DSEG7-Classic";
+        src: url("fonts-DSEG_v045/DSEG7-Classic/DSEG7Classic-Regular.woff")
+          format("woff");
+      }
+    </style>
+    <link rel="stylesheet" href="style.css" />
+    <title>jsGuess</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <style>
-    @font-face {
-      font-family: "DSEG7-Classic";
-      src: url("fonts-DSEG_v045/DSEG7-Classic/DSEG7Classic-Regular.woff") format("woff");
-    }
-  </style>
-  <link rel="stylesheet" href="style.css" />
-  <title>jsGuess</title>
-</head>
-
-<body>
-  <header class="menu">
-    <div class="triangle-up start-arrow">
-      <p class="start-instructions">
-        To begin memory challenge and start the timer, press this button
-      </p>
-    </div>
-    <div class="triangle-up reset-arrow">
-      <p class="reset-instructions">
-        To reset the timer and shuffle the deck, press this button
-      </p>
-    </div>
-    <!-- <h1>jsGuess!</h1> -->
-    <!-- <p>imagine this: a flipping card guessing game inside your own browser! Start the game by pressing <i>START</i> on
+  <body>
+    <audio id="fwip">
+      <source src="fwip.wav" type="audio/wav" />
+      your browser does not like a fwip sound
+    </audio>
+    <header class="menu">
+      <div class="triangle-up start-arrow">
+        <p class="start-instructions">
+          To begin memory challenge and start the timer, press this button
+        </p>
+      </div>
+      <div class="triangle-up reset-arrow">
+        <p class="reset-instructions">
+          To reset the timer and shuffle the deck, press this button
+        </p>
+      </div>
+      <!-- <h1>jsGuess!</h1> -->
+      <!-- <p>imagine this: a flipping card guessing game inside your own browser! Start the game by pressing <i>START</i> on
       the alarm clock. At any time, reset the clock and game by pressing <i>RESET</i></p> -->
-    <!-- <button class="starterButton">
+      <!-- <button class="starterButton">
       Ready?
     </button> -->
-  </header>
-  <nav>
-    <h1>jsGuess</h1>
-    <div class="clock">
-      <p class="screen">00:00.0</p>
-    </div>
-    <div class="clockBack">
-      <button class="pushButton startButton">start</button>
-      <button class="pushButton resetButton">reset</button>
-    </div>
-  </nav>
-  <section class="table">
-    <div class="deck"></div>
-  </section>
-  <script src="script.js"></script>
-</body>
-
+    </header>
+    <nav>
+      <h1>jsGuess</h1>
+      <div class="clock">
+        <p class="screen">00:00.0</p>
+      </div>
+      <div class="clockBack">
+        <button class="pushButton startButton">start</button>
+        <button class="pushButton resetButton">reset</button>
+      </div>
+    </nav>
+    <section class="table">
+      <div class="deck"></div>
+    </section>
+    <script src="script.js"></script>
+  </body>
 </html>
