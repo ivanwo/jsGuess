@@ -15,7 +15,16 @@ let downSound = document.getElementById("downSound");
 let upSound = document.getElementById("upSound");
 let counter = 0;
 let time = 0;
-let audioOn = true;
+
+let audioOn;
+if (localStorage.getItem("audioOn") !== null) {
+  audioOn = JSON.parse(localStorage.getItem("audioOn"));
+  if (!audioOn) {
+    document.querySelector("#audio-on").classList.add("audio-off");
+  }
+} else {
+  audioOn = true;
+}
 let scoreArray;
 let fastestArray;
 
@@ -74,6 +83,8 @@ document.querySelector("#audio-on").addEventListener("click", (event) => {
   event.stopPropagation();
   event.target.classList.toggle("audio-off");
   audioOn = !audioOn;
+  localStorage.setItem("audioOn", JSON.stringify(audioOn));
+
 })
 
 // Grab deck container
