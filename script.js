@@ -2,6 +2,7 @@ let deck = ["♣&#xFE0E;", "♣&#xFE0E;", "♪&#xFE0E;", "♪&#xFE0E;", "★&#xF
 let counter = 0;
 let time = 0;
 let scoreArray;
+let fastestArray;
 
 let timeSet;
 
@@ -117,7 +118,7 @@ function game(event) {
               }
               localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
               // Display Score List on Win pop-up
-              displayScores();
+              displayScores(scoreArray);
             }
             return;
           } else {
@@ -259,31 +260,61 @@ function checkTime(i) {
 
 // function to retrive previous win data
 function getScoreList() {
-  if (!(scoreArray = JSON.parse(localStorage.getItem("scoreArray")))) {
+  // Handle most recent scores array
+  scoreArray = JSON.parse(localStorage.getItem("scoreArray"));
+  if (!scoreArray) {
     // If it doesn't exist, create an empty array
     scoreArray = [];
     // And only add the event listener for the menu, keep it visible
     menuEl.addEventListener("click", menuFade);
   } else {
-    displayScores();
-    // If there is a score list, immediately hide the menu
+    // Set the data attribute to record that the most recent times are displayed
+    document.body.dataset.scoreDisplay = "recent";
+    // If there is a score list, display it
+    displayScores(scoreArray);
+    // and immediately hide the menu
     menuEl.classList.add("fade");
     menuEl.style.display = "none";
   }
   // console.log(scoreArray);
+
+  // Handle fastest scores array
+  fastestArray = JSON.parse(localStorage.getItem("fastestArray"))
+  if (!fastestArray) {
+    // If it doesn't exist create an empty array
+    fastestArray = [];
+  }
+  // Do nothing otherwise, the default display is most recent times
 }
 
+
 // function to display score list
-function displayScores() {
-  let scoreBoardEl = document.createElement("div");
+function displayScores(inputScoreArray) {
+  let scoreBoardEl = document.querySelector("scoreBoard");
+  if (!scoreBoardEl) {
+    //  If no board already present, create the elements that make up the scoreboard
+    scoreBoardEl = document.createElement("div");
+    // Add the scoreboard class to the div container
+    scoreBoardEl.classList.add("scoreBoard");
+  } else {
+    // Otherwise remove the current children
+    while (scoreBoardEl.firstChild) {
+      scoreBoardEl.firstChild.remove();
+    }
+  }
   let scoreHeaderEl = document.createElement("h4");
-  scoreBoardEl.classList.add("scoreBoard");
-  scoreHeaderEl.innerText = "Most Recent Times:";
+
+  // Add the header text depending on the data attribute data-score-display
+  if (document.body.dataset.scoreDisplay === "recent") {
+    scoreHeaderEl.innerText = "Most Recent Times:";
+  }
   scoreBoardEl.appendChild(scoreHeaderEl);
-  for (let i = 0; i < scoreArray.length; i++) {
+
+  // Add scoreArray times to the board in the order in the array
+  for (let i = 0; i < inputScoreArray.length; i++) {
     if (i < 10) {
       let scorePEl = document.createElement("p");
-      scorePEl.innerHTML = `<i>${i + 1}:</i> ${timeString(scoreArray[i])}`;
+      scorePEl.innerHTML = `<i>${i + 1})</i> ${timeString(inputScoreArray[i])}`;
       scorePEl.classList.add("scoreP");
       scoreBoardEl.appendChild(scorePEl);
     } else {
@@ -291,11 +322,14 @@ function displayScores() {
     }
   }
   document.body.appendChild(scoreBoardEl);
+
+
   setTimeout(() => {
     document.body.addEventListener("click", clearScoreBoard);
   }, 1000);
 }
 
+// Remove the displayed scoreBoard from the page
 function clearScoreBoard() {
   let scoreBoardEl = document.querySelector(".scoreBoard");
   document.body.removeEventListener("click", clearScoreBoard);

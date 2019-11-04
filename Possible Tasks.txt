@@ -16,6 +16,7 @@ Landscape on mobile is impossible since the cards are all offscreen. We need to 
 Tablet size the cards fall off the screen partially on landscape.
 The symbols show up differently on different devices. On another note, the colorful symbols that show up were liked.
 Possible improvment on the scoreboards: Keep fastest time shown, but the rest can just be most recent.
+Another Scoreboard option: Have the board swap between most recent times and fastest times.
 Feedback: Looks a little plain.
 For those who want fast times: Make the time taken to flip to be adjustable.
 Sounds: flip card sound, cheer on win, background music, stuff like that
