@@ -11,8 +11,11 @@ let deck = [
   "♦&#xFE0E;"
 ];
 let flipSound = document.getElementById("fwip");
+let downSound = document.getElementById("downSound");
+let upSound = document.getElementById("upSound");
 let counter = 0;
 let time = 0;
+let audioOn = true;
 let scoreArray;
 let fastestArray;
 
@@ -38,7 +41,7 @@ function shuffle() {
 let menuEl = document.querySelector(".menu");
 
 getScoreList();
-console.log(fastestArray);
+// console.log(fastestArray);
 
 function menuFade() {
   menuEl.classList.add("fade");
@@ -51,6 +54,25 @@ startEl.addEventListener("click", start);
 
 let resetEl = document.querySelector(".resetButton");
 resetEl.addEventListener("click", reset);
+
+// Add event listeners for clock button sounds
+document.querySelector(".clockBack").addEventListener("mousedown", event => {
+  if (event.target.classList.contains("pushButton") && audioOn) {
+    downSound.play();
+  }
+});
+document.querySelector(".clockBack").addEventListener("mouseup", event => {
+  if (event.target.classList.contains("pushButton") && audioOn) {
+    upSound.play();
+  }
+});
+
+// Audio off event listener
+document.querySelector("#audio-on").addEventListener("click", (event) => {
+  event.stopPropagation();
+  event.target.classList.toggle("audio-off");
+  audioOn = !audioOn;
+})
 
 // Grab deck container
 const deckEl = document.querySelector(".deck");
@@ -200,9 +222,11 @@ function flipCard(cardEl) {
   //   }, 1500);
   // } else {
 
-  setTimeout(_ => {
-    flipSound.play();
-  }, 30);
+  if (audioOn) {
+    setTimeout(_ => {
+      flipSound.play();
+    }, 30);
+  }
   cardEl.querySelector(".front").classList.toggle("face-up");
   cardEl.querySelector(".back").classList.toggle("face-up");
   // }
@@ -225,6 +249,8 @@ function timer() {
 // Needs to:
 
 function reset() {
+  // Remove start button event listener just in case
+  startEl.removeEventListener("click", start);
   // Get the cards off the screen
   deckEl.classList.toggle("resetDeck");
   // console.log("Should have clear animation running");
