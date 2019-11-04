@@ -299,6 +299,25 @@ div.resetDeck {
   cursor: pointer;
 }
 
+.invisible {
+  display:none;
+}
+
+.audio-off {
+  position: relative;
+}
+
+.audio-off:before {
+  position: absolute;
+  content: "";
+  left: -15%;
+  top: 50%;
+  right: 0;
+  border-top: 3px solid red;
+  transform: rotate(45deg);
+  width: 0.75em;
+}
+
 @media only screen and (min-width: 600px) {
   .deck {
     margin: auto;
@@ -350,28 +369,16 @@ div.resetDeck {
     left: 50%;
     transform: translateX(-50%);
   }
-/* 
-  .cardFlipPerspective {
-    transition: transform 0.5s ease;
-    transform: perspective(200px) rotateX(-15deg);
-  } */
+
+  .audio-off:before {
+    position: absolute;
+    content: "";
+    left: -15%;
+    top: 50%;
+    right: 0;
+    border-top: 3px solid red;
+    transform: rotate(45deg);
+    width: 0.75em;
+  }
 }
 
-.invisible {
-  display:none;
-}
-
-.audio-off {
-  position: relative;
-}
-
-.audio-off:before {
-  position: absolute;
-  content: "";
-  left: -15%;
-  top: 50%;
-  right: 0;
-  border-top: 3px solid red;
-  transform: rotate(45deg);
-  width: 0.75em;
-}
