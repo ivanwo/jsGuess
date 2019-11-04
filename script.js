@@ -249,8 +249,10 @@ function timer() {
 // Needs to:
 
 function reset() {
-  // Remove start button event listener just in case
+  // Remove start button event listener and card event listener just in case
   startEl.removeEventListener("click", start);
+  deckEl.removeEventListener("click", game);
+
   // Get the cards off the screen
   deckEl.classList.toggle("resetDeck");
   // console.log("Should have clear animation running");
