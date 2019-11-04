@@ -252,6 +252,7 @@ div.resetDeck {
   position: absolute;
   /* min-height: 250px; */
   font-family: sans-serif;
+  box-shadow: 1px 1px 100px black;
   font-size: 1.5em;
   background-color: lightblue;
   color: steelblue;
@@ -275,6 +276,12 @@ div.resetDeck {
   margin-top: 0;
   border-bottom: 2px solid royalblue;
   margin-bottom: 10px;
+}
+
+.scoreBoard em{
+  cursor: pointer;
+  font-size: 0.7em;
+
 }
 
 @media only screen and (min-width: 600px) {

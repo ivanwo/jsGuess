@@ -27,6 +27,7 @@ let menuEl = document.querySelector(".menu");
 
 
 getScoreList();
+console.log(fastestArray);
 
 function menuFade() {
   menuEl.classList.add("fade");
@@ -110,15 +111,46 @@ function game(event) {
               deckEl.removeEventListener("click", game);
               //stop timer
               clearInterval(timeSet);
-              // Add current timer time to score list and store score list
+
+              // Add current timer time to most recent score list and store score list
               scoreArray.unshift(time);
               // Check if the number of scores > 10, and get rid of 1 if so
               if (scoreArray.length > 10) {
                 scoreArray.pop();
               }
               localStorage.setItem("scoreArray", JSON.stringify(scoreArray));
+
+              // Check if the  fastest times list is empty
+              if (fastestArray.length === 0) {
+                // If it is, add the current time to the list
+                fastestArray.push(time);
+              } else {
+                // Check if current timer is faster than previous top ten times
+                for (let i = 0; i < 10; i++) {
+                  // If the current timer is faster than the currently element of the list
+                  if (time < fastestArray[i]) {
+                    // Insert the time
+                    fastestArray.splice(i, 0, time);
+                    // Check if the score array is bigger than 10
+                    if (fastestArray.length > 10) {
+                      // Remove the slowest time if so
+                      fastestArray.pop();
+                    }
+                    break;
+                  } else if (i === fastestArray.length) {
+                    // Check if the index is past the end of the array, if so, add the 
+                    // time to the array, since the loop will only go up to 10 elements
+                    fastestArray.push(time);
+                    break;
+                  }
+                }
+              }
+              localStorage.setItem("fastestArray", JSON.stringify(fastestArray));
+
+              // Set data attribute for score display
+              document.body.dataset.scoreDisplay = "recent";
               // Display Score List on Win pop-up
-              displayScores(scoreArray);
+              displayScores();
             }
             return;
           } else {
@@ -271,7 +303,7 @@ function getScoreList() {
     // Set the data attribute to record that the most recent times are displayed
     document.body.dataset.scoreDisplay = "recent";
     // If there is a score list, display it
-    displayScores(scoreArray);
+    displayScores();
     // and immediately hide the menu
     menuEl.classList.add("fade");
     menuEl.style.display = "none";
@@ -289,41 +321,53 @@ function getScoreList() {
 
 
 // function to display score list
-function displayScores(inputScoreArray) {
-  let scoreBoardEl = document.querySelector("scoreBoard");
+function displayScores() {
+  // Create a variable to refer to the array to display on the score list
+  let scoreArrayToDisplay;
+
+  // Try to get the current score board
+  let scoreBoardEl = document.querySelector(".scoreBoard");
   if (!scoreBoardEl) {
-    //  If no board already present, create the elements that make up the scoreboard
+    //  If no board already present, create the div container and attach it to the body
     scoreBoardEl = document.createElement("div");
+    document.body.appendChild(scoreBoardEl);
     // Add the scoreboard class to the div container
     scoreBoardEl.classList.add("scoreBoard");
+
   } else {
     // Otherwise remove the current children
     while (scoreBoardEl.firstChild) {
       scoreBoardEl.firstChild.remove();
     }
   }
-  let scoreHeaderEl = document.createElement("h4");
 
-  // Add the header text depending on the data attribute data-score-display
+  // Create the heading element
+  let scoreHeaderEl = document.createElement("h4");
+  // Add the heading text depending on the data attribute data-score-display and setup the score array to display
   if (document.body.dataset.scoreDisplay === "recent") {
-    scoreHeaderEl.innerText = "Most Recent Times:";
+    scoreHeaderEl.innerHTML = "Most Recent <em>/ (Fastest)</em> Times:";
+    scoreArrayToDisplay = scoreArray;
+  } else if (document.body.dataset.scoreDisplay === "fastest") {
+    scoreHeaderEl.innerHTML = "Fastest <em>/ (Most Recent)</em> Times:";
+    scoreArrayToDisplay = fastestArray;
   }
   scoreBoardEl.appendChild(scoreHeaderEl);
 
   // Add scoreArray times to the board in the order in the array
-  for (let i = 0; i < inputScoreArray.length; i++) {
+  for (let i = 0; i < scoreArrayToDisplay.length; i++) {
     if (i < 10) {
       let scorePEl = document.createElement("p");
-      scorePEl.innerHTML = `<i>${i + 1})</i> ${timeString(inputScoreArray[i])}`;
+      scorePEl.innerHTML = `<i>${i + 1})</i> ${timeString(scoreArrayToDisplay[i])}`;
       scorePEl.classList.add("scoreP");
       scoreBoardEl.appendChild(scorePEl);
     } else {
       break;
     }
   }
-  document.body.appendChild(scoreBoardEl);
 
-
+  // Attach the listener to the emphasized text in the heading to swap the list if clicked
+  document.querySelector(".scoreBoard em").addEventListener("click", swapScoreList)
+  // Attach the listener on a delay to the body to clear the score list. The delay prevents a current mouse down from clearing it
   setTimeout(() => {
     document.body.addEventListener("click", clearScoreBoard);
   }, 1000);
@@ -334,4 +378,19 @@ function clearScoreBoard() {
   let scoreBoardEl = document.querySelector(".scoreBoard");
   document.body.removeEventListener("click", clearScoreBoard);
   scoreBoardEl.remove();
+}
+
+// Swap the scoreBoard list on click to the relevent heading text
+function swapScoreList(event) {
+  // Prevent the click event from propagating and clearing the score list
+  event.stopPropagation();
+
+  // Swap the list depending on what is currently displayed according to the data-score-display attribute on the body
+  if (document.body.dataset.scoreDisplay === "recent") {
+    document.body.dataset.scoreDisplay = "fastest";
+    displayScores();
+  } else if (document.body.dataset.scoreDisplay === "fastest") {
+    document.body.dataset.scoreDisplay = "recent";
+    displayScores();
+  }
 }
