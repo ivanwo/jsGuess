@@ -96,8 +96,9 @@ transform: translateX(-45px);
   top: 125px;
   background-color: peru;
   border-top: 5px solid sienna;
-  overflow: hidden;
+  overflow: auto;
   width: 100%;
+  padding-top: 50px;
 }
 .startButton {
   background-color: lightgreen;
@@ -318,6 +319,10 @@ div.resetDeck {
   width: 0.75em;
 }
 
+.resetTable {
+  overflow: hidden;
+}
+
 @media only screen and (min-width: 600px){
   .deck {
     margin: auto;
@@ -343,6 +348,7 @@ div.resetDeck {
     position: absolute;
     bottom: 0;
     top: 200px;
+    padding-top: 0;
   }
   .card {
     transform: scale(1);
@@ -402,15 +408,18 @@ div.resetDeck {
   } */
 
   .deck{
-    /* margin-top: -75px;
-    max-height: 80vw;
-    z-index: 1;
-
-    max-width: 100vh; */
+    margin: 18% auto;
+    width: 90%;
     transform: none;
   }
-  /* .card {
-    transform: scale(0.75);
-    margin: -11px -11px;
-  } */
+  .card {
+    transform: scale(0.6);
+    margin: -30px -20px;
+  }
+
+  div.resetDeck {
+    padding-top: 100vw;
+    width: 90%;
+    transform: none;
+  }
 }

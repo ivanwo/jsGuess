@@ -268,6 +268,9 @@ function reset() {
 
   // Get the cards off the screen
   deckEl.classList.toggle("resetDeck");
+  // Lock table view
+  document.querySelector(".table").classList.toggle("resetTable");
+
   // console.log("Should have clear animation running");
   // Reset the win counter,
   counter = 0;
@@ -293,6 +296,8 @@ function reset() {
   }, 1000);
   setTimeout(_ => {
     deckEl.classList.toggle("resetDeck");
+    // Unlock table view
+    document.querySelector(".table").classList.toggle("resetTable");
     // console.log("Should have place on table animation running");
   }, 2000);
   // Reset the timer
