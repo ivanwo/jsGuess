@@ -243,7 +243,7 @@ transform: translateX(-45px);
   transform: rotateY(0deg);
 }
 div.resetDeck {
-  padding-top: 100vh;
+  padding-top: 200vh;
   width: 90%;
 }
 .scoreBoard {
@@ -423,7 +423,7 @@ div.resetDeck {
   }
 
   div.resetDeck {
-    padding-top: 100vw;
+    padding-top: 200vw;
     width: 90%;
     transform: none;
   }
