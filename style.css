@@ -96,9 +96,9 @@ transform: translateX(-45px);
   top: 125px;
   background-color: peru;
   border-top: 5px solid sienna;
-  overflow: auto;
   width: 100%;
-  padding-top: 50px;
+  /* padding-top: 50px; */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
 }
 .startButton {
   background-color: lightgreen;
@@ -173,7 +173,7 @@ transform: translateX(-45px);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin: 18% auto;
+  margin: 18vh auto;
   transform: none;
   transition: padding-top 2s;
 }
@@ -398,6 +398,11 @@ div.resetDeck {
     position: absolute;
     top: 100%;
     left: 0;
+  }
+
+  .menu {
+    height: 100vw;
+    width: 100vh;
   }
 
   /* .table{
